@@ -14,13 +14,26 @@ define([
 
   PredictionPage.prototype.init = function() {
     var self = this;
-    var params = {
-      // stockId: 1516
-    };
+    var params = {};
+    if (localStorage.getItem('prediction321') !== '1') {
+      params.stockId = 321; // 삼성전자
+      localStorage.setItem('prediction321', '1');
+    } else if (localStorage.getItem('prediction1516') !== '1') {
+      params.stockId = 1516; // 카카오
+      localStorage.setItem('prediction1516', '1');
+    }
+
     HttpUtil.getData('/stocks/random', params, function(err, data) {
       self.stock = data;
       $('#stock_title_text').text(data.kor_name);
       $('#stock_price_text').text(data.price_text);
+      if (params.stockId === 321) {
+        console.log('삼성전자');
+        $('body').attr("style", "background-image: url('/images/main_samsung_bg.png')");
+      } else if (params.stockId === 1516) {
+        console.log('카카오');
+        $('body').attr("style", "background-image: url('/images/main_kakao_bg.png')");
+      }
     });
 
     this.bindHandlers();
