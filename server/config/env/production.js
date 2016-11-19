@@ -1,13 +1,13 @@
 
 module.exports = {
   env: 'production',
-  secret: 'server',
+  secret: 'stock_price',
   db: {
-    database: 'server',
+    database: 'stock_price',
     host: 'localhost',
     port: 3306,
-    user: '',
-    password: '',
+    user: 'root',
+    password: 'dmdtka',
     connectionLimit: 10,
     multipleStatements: false
   }
