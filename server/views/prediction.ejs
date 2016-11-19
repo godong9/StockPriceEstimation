@@ -7,13 +7,45 @@
         <meta property="og:description" content="개미들의 주가 예측 플랫폼" />
         <meta property="og:image" content="" />
     </head>
-    <body>
+    <body style="background-image: url('/images/main_kakao_bg.png'); background-size: cover;">
         <div id="content_container">
-            <div>Prediction Page</div>
+            <div id="page_title">
+                <p class="text-center">내일의 주식 종가를 예측해 보세요!</p>
+            </div>
+            <div id="page_content">
+                <div id="up_container">
+                    <div class="button-wrapper text-center">
+                        <img id="up_btn" class="up-img" src="/images/button_up.png" />
+                    </div>
+                </div>
+                <div id="center_container" class="row">
+                    <div class="col-xs-2 col-md-2 center-item next-item-btn">
+                        <img src="/images/button_circle_left.png" />
+                    </div>
+                    <div class="col-xs-8 col-md-8 center-item padding-zero">
+                        <div id="stock_title">
+                            <p id="stock_title_text" class="text-center">종목명</p>
+                        </div>
+                        <div id="stock_price">
+                            <p class="margin-zero text-center">현재 주가</p>
+                            <p id="stock_price_text" class="text-center">0원</p>
+                        </div>
+                        <img src="/images/center_circle.png" />
+                    </div>
+                    <div class="col-xs-2 col-md-2 center-item next-item-btn">
+                        <img src="/images/button_circle_right.png" />
+                    </div>
+                </div>
+                <div id="down_container">
+                    <div class="button-wrapper text-center">
+                        <img id="down_btn" class="down-img" src="/images/button_down.png" />
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="menu_container">
-
+            <p class="text-center">결과 보기 ></p>
         </div>
         <script type="text/javascript" src="prediction.bundle.js" charset="utf-8"></script>
     </body>

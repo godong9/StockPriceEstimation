@@ -3,7 +3,7 @@ const async = require('async');
 const log4js = require('log4js');
 const logger = log4js.getLogger('controllers/stocks');
 const Stock = require('../models/stocks');
-
+const numeral = require('numeral');
 const KoscomService = require('../services/koscom');
 const INTERNAL_SERVER_ERROR = '서버 에러 발생!';
 
@@ -59,7 +59,8 @@ let StockController = {
             return callback(err);
           }
           let stockResult = _.extend(stockDbItem, {
-            price: priceResult.result.trdPrc
+            price: priceResult.result.trdPrc,
+            price_text: numeral(priceResult.result.trdPrc).format('0,0') + '원'
           });
           callback(null, stockResult);
         });
