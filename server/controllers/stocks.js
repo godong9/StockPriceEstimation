@@ -54,15 +54,20 @@ let StockController = {
           market: stockDbItem.market
         };
         KoscomService.getStockPrice(params, function(err, priceResult) {
+          let stockResult;
           logger.debug(priceResult);
           if (err) {
             return callback(err);
           }
-          let stockResult = _.extend(stockDbItem, {
-            price: priceResult.result.trdPrc,
-            price_text: numeral(priceResult.result.trdPrc).format('0,0') + '원'
-          });
-          callback(null, stockResult);
+          try {
+            stockResult = _.extend(stockDbItem, {
+              price: priceResult.result.trdPrc,
+              price_text: numeral(priceResult.result.trdPrc).format('0,0') + '원'
+            });
+          } catch (e) {
+            err = e;
+          }
+          callback(err, stockResult);
         });
       }
     ], function (err, result) {

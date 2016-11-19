@@ -8,6 +8,15 @@ let PredictionController = {
   getPredictionPage: function getPredictionPage(req, res) {
     res.render('prediction', {})
   },
+  getPredictionStatList: function getPredictionUpList(req, res) {
+    Prediction.getPredictionsByWillUp(req.params.willUp, function(err, result) {
+      if (err) {
+        logger.error(err);
+        return res.status(500).send(INTERNAL_SERVER_ERROR);
+      }
+      res.send(result);
+    });
+  },
   setPrediction: function setPrediction(req, res) {
     // TODO: 유저 id 세션에서 가져와야함!
     let params = {

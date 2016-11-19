@@ -4,6 +4,9 @@ const PredictionController = require('../controllers/predictions');
 
 router.get('/', PredictionController.getPredictionPage);
 
+
+router.get('/stat/list/:willUp', PredictionController.getPredictionStatList);
+
 /**
  * willUp: req.body.willUp (1: 상승, 0: 하락)
  * todayPrice: req.body.todayPrice (현재 가격)
