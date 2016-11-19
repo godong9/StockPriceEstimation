@@ -5,7 +5,8 @@ module.exports = {
   context: __dirname + '/public/javascripts',
   entry: {
     'main': './main.js',
-    'prediction': './prediction.js'
+    'prediction': './prediction.js',
+    'stat': './stat.js'
   },
   module: {
     loaders: [

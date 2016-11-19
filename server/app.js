@@ -12,6 +12,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var stocks = require('./routes/stocks');
 var predictions = require('./routes/predictions');
+var stats = require('./routes/stats');
 
 var app = express();
 
@@ -50,6 +51,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/stocks', stocks);
 app.use('/predictions', predictions);
+app.use('/stats', stats);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

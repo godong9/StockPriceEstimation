@@ -1,4 +1,4 @@
-//main.js
+//prediction.js
 define([
   './libs/jquery/dist/jquery',
   './utils/http-util'
@@ -59,6 +59,10 @@ define([
     $('.next-item-btn').click(function() {
       console.log('next');
       location.reload();
+    });
+
+    $('#stat_btn').click(function() {
+      location.href = '/stats';
     });
   };
 
