@@ -1,4 +1,5 @@
 const _ = require('underscore');
+const async = require('async');
 const log4js = require('log4js');
 const logger = log4js.getLogger('controllers/stocks');
 const Stock = require('../models/stocks');
@@ -35,6 +36,55 @@ let StockController = {
         }
         res.send(result);
       });
+    });
+  },
+  getStockPrice: function getStockPrice(req, res) {
+    const params = {
+      issueCode: req.query.issueCode,
+      market: req.query.market,
+    };
+    KoscomService.getStockPrice(params, function(err, result) {
+      if (err) {
+        logger.error(err);
+        return res.status(500).send(INTERNAL_SERVER_ERROR);
+      }
+      let priceResult = {
+        issueCode: params.issueCode,
+        price: result.result.trdPrc
+      };
+      res.send(priceResult);
+    });
+  },
+  getRandomStock: function getStockPrice(req, res) {
+    async.waterfall([
+      function(callback) {
+        let randomId = Math.floor((Math.random() * 2466) + 1);
+        Stock.getStockById(randomId, callback);
+      },
+      function(stockDbItem, callback) {
+        logger.debug(stockDbItem);
+        const params = {
+          issueCode: stockDbItem.issue_code,
+          market: stockDbItem.market
+        };
+        KoscomService.getStockPrice(params, function(err, priceResult) {
+          logger.debug(priceResult);
+
+          if (err) {
+            return callback(err);
+          }
+          let stockResult = _.extend(stockDbItem, {
+            price: priceResult.result.trdPrc
+          });
+          callback(null, stockResult);
+        });
+      }
+    ], function (err, result) {
+      if (err) {
+        logger.error(err);
+        return res.status(500).send(INTERNAL_SERVER_ERROR);
+      }
+      res.send(result);
     });
   }
 };

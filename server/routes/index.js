@@ -7,8 +7,4 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/stocks/kospi', StockController.getKospiStockList);
-
-router.get('/stocks/kosdaq', StockController.getKosdaqStockList);
-
 module.exports = router;
