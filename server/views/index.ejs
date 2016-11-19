@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/css/style.css' />
+    <%- include partial/common-head.ejs %>
+    <link rel="stylesheet" href="/css/login.css" />
+    <meta property="og:title" content="개미의 선택" />
+    <meta property="og:description" content="개미들의 주가 예측 플랫폼" />
+    <meta property="og:image" content="" />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+
+    <div>Login Page</div>
 
     <script type="text/javascript" src="main.bundle.js" charset="utf-8"></script>
   </body>
