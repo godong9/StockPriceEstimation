@@ -7,12 +7,15 @@ let SessionService = {
   getSession: function getSession(req) {
     return {
       userId: req.session.userId,
-      userName: req.session.userName
+      userNickname: req.session.userNickname
     }
+  },
+  getSessionUserId: function getSessionUserId(req) {
+    return req.session.userId;
   },
   setSession: function setSession(req, user) {
     req.session.userId = user.id;
-    req.session.userName = user.name;
+    req.session.userNickname = user.nickname;
   },
   removeSession: function removeSession(req) {
     req.session.destroy();

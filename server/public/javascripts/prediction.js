@@ -37,6 +37,9 @@ define([
         todayPrice: self.stock.price
       };
       HttpUtil.postData('/predictions/' + self.stock.id, params, function(err, data) {
+        if (err) {
+          return alert(err);
+        }
         console.log("Success");
         $('.next-item-btn').trigger('click');
       });
@@ -51,6 +54,9 @@ define([
         todayPrice: self.stock.price
       };
       HttpUtil.postData('/predictions/' + self.stock.id, params, function(err, data) {
+        if (err) {
+          return alert(err);
+        }
         console.log("Success");
         $('.next-item-btn').trigger('click');
       });
