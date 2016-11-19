@@ -4,7 +4,7 @@ define([
   './utils/http-util'
 ], function (
   $,
-  HttpUtil
+  HttpUtil,
 ) {
   'use strict';
 

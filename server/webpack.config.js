@@ -6,7 +6,8 @@ module.exports = {
   entry: {
     'main': './main.js',
     'prediction': './prediction.js',
-    'stat': './stat.js'
+    'stat': './stat.js',
+    'ranking': './ranking.js'
   },
   module: {
     loaders: [
