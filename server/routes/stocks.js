@@ -7,11 +7,8 @@ router.get('/kospi', StockController.getKospiStockList);
 router.get('/kosdaq', StockController.getKosdaqStockList);
 
 /**
- * issueCode: req.query.issueCode (주식 issue_code)
- * market: req.query.market (kospi or kosdaq)
+ * stockId: req.query.stockId (optional) 321: 삼성전자, 1516: 카카오
  */
-router.get('/price', StockController.getStockPrice);
-
 router.get('/random', StockController.getRandomStock);
 
 module.exports = router;

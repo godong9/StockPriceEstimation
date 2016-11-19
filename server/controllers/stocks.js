@@ -38,27 +38,13 @@ let StockController = {
       });
     });
   },
-  getStockPrice: function getStockPrice(req, res) {
-    const params = {
-      issueCode: req.query.issueCode,
-      market: req.query.market,
-    };
-    KoscomService.getStockPrice(params, function(err, result) {
-      if (err) {
-        logger.error(err);
-        return res.status(500).send(INTERNAL_SERVER_ERROR);
-      }
-      let priceResult = {
-        issueCode: params.issueCode,
-        price: result.result.trdPrc
-      };
-      res.send(priceResult);
-    });
-  },
   getRandomStock: function getStockPrice(req, res) {
     async.waterfall([
       function(callback) {
         let randomId = Math.floor((Math.random() * 2466) + 1);
+        if (req.query.stockId) {
+          randomId = req.query.stockId;
+        }
         Stock.getStockById(randomId, callback);
       },
       function(stockDbItem, callback) {
@@ -69,7 +55,6 @@ let StockController = {
         };
         KoscomService.getStockPrice(params, function(err, priceResult) {
           logger.debug(priceResult);
-
           if (err) {
             return callback(err);
           }
