@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include partial/common-head.ejs %>
+        <link rel="stylesheet" href="/css/stat.css" />
+        <meta property="og:title" content="개미의 선택" />
+        <meta property="og:description" content="개미들의 주가 예측 플랫폼" />
+        <meta property="og:image" content="" />
+    </head>
+    <body>
+        <nav id="nav" class="navbar navbar-fixed-top">
+            <div class="back-and-button-nav">
+                <p class="text-left"><</p>
+                <p class="text-right">주문</p>
+            </div>
+        </nav>
+        <div id="content_container">
+            <img src="/images/stock_detail_top.png" />
+            <a href="http://www.yonhapnews.co.kr/bulletin/2016/11/19/0200000000AKR20161119035800008.HTML">
+                <img src="/images/detail_article.png" />
+            </a>
+        </div>
+        <div id="menu_container">
+            <%- include partial/menu.ejs %>
+        </div>
+    </body>
+</html>

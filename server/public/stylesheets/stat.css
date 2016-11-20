@@ -59,3 +59,11 @@
     height: 100%;
     margin: 0 auto;
 }
+
+.back-and-button-nav > p {
+    padding: 5px 10px;
+}
+
+#content_container img {
+    width: 100%;
+}

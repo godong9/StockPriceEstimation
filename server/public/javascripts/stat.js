@@ -48,7 +48,7 @@ define([
         _.every(data, function(stat) {
           stat.text = stat.kor_name;
           stat.count = stat.stat_count;
-          stat.price_text = numeral(stat.today_price).format('0,0') + '원' + ' / ' + stat.stat_count;
+          stat.price_text = numeral(stat.today_price).format('0,0') + '원';
           return stat;
         });
         console.log(data);
@@ -122,6 +122,10 @@ define([
             ]
           }
         }]
+    });
+
+    d3.select("svg").on("click", function() {
+      location.href = '/stats/detail';
     });
   };
 
