@@ -4,6 +4,8 @@ const UserController = require('../controllers/users');
 
 router.post('/login', UserController.login);
 
+router.get('/myPage', UserController.myPage);
+
 /* GET users listing. */
 router.get('/', UserController.getUsers);
 

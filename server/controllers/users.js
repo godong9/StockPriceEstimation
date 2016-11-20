@@ -24,6 +24,9 @@ let UserController = {
       res.send(Session.getSession(req));
     });
   },
+  myPage: function myPage(req, res) {
+    res.render('my-page', { activeTab: 'myPage' });
+  },
   getUsers: function getUser(req, res, next) {
     let params = {};
     logger.debug(params);
