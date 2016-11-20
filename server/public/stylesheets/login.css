@@ -1,3 +1,31 @@
 body {
 
 }
+
+#content_container {
+    padding-top: 65%;
+}
+
+#lost_password {
+    color: #FFFFFF;
+    text-decoration: underline;
+    margin-top: 30px;
+}
+
+.login-input {
+    margin: 20px 0px;
+}
+
+.login-input > input {
+    width: 60%;
+}
+
+#join_btn > img {
+    width: 35%;
+    padding: 10px 0px;
+}
+
+#login_btn > img {
+    width: 35%;
+    padding: 10px 0px;
+}

@@ -7,21 +7,24 @@
     <meta property="og:description" content="개미들의 주가 예측 플랫폼" />
     <meta property="og:image" content="" />
   </head>
-  <body>
-    <nav id="nav" class="navbar navbar-fixed-top">
-      <div>
-        <p class="text-center">로그인</p>
-      </div>
-    </nav>
+  <body  style="background-image: url('/images/bg_login.png'); background-size: cover;">
     <div id="content_container">
-      <div>
+      <div class="login-input text-center">
         <input id="email" type="email"/>
       </div>
-      <div>
+      <div class="login-input text-center">
         <input id="password" type="password"/>
       </div>
+      <div id="lost_password" class="text-center">
+        <p>계정을 잊으셨나요?<p>
+      </div>
       <div>
-        <button id="login_btn">로그인</button>
+        <div id="login_btn" class="text-center">
+          <img src="/images/button_login.png" />
+        </div>
+        <div id="join_btn" class="text-center">
+          <img src="/images/button_signup.png" />
+        </div>
       </div>
     </div>
     <div id="menu_container">
