@@ -2,7 +2,7 @@
 <html>
     <head>
         <%- include partial/common-head.ejs %>
-        <link rel="stylesheet" href="/css/stat.css" />
+        <link rel="stylesheet" href="/css/ranking.css" />
         <meta property="og:title" content="개미의 선택" />
         <meta property="og:description" content="개미들의 주가 예측 플랫폼" />
         <meta property="og:image" content="" />
@@ -10,11 +10,53 @@
     <body>
         <nav id="nav" class="navbar navbar-fixed-top">
             <div>
-                <p class="text-center">예측 랭킹</p>
+                <p class="text-center">개미 랭킹</p>
             </div>
         </nav>
         <div id="content_container">
+            <div class="row-title">
+                <p>나의 랭킹</p>
+            </div>
+            <div class="row-container row content-row">
+                <div class="item-row col-xs-2 col-md-2 text-center">
+                    <%= userRanking.ranking %>
+                </div>
+                <div class="item-row col-xs-1 col-md-1 text-center">
+                    <img class="grade-icon" src="/images/icon_rank_<%= userRanking.grade_id %>.png" />
+                </div>
+                <div class="nickname-row item-row col-xs-4 col-md-4">
+                    <%= userRanking.nickname %>
+                </div>
+                <div class="item-row col-xs-2 col-md-2 text-center">
+                </div>
+                <div class="rating-row item-row col-xs-3 col-md-3 text-right">
+                    <%= userRanking.hit_rating %>%
+                </div>
+            </div>
 
+            <div class="row-title">
+                <p>전체 랭킹</p>
+            </div>
+            <% for (var i=0; i<rankingList.length; i++) { %>
+                <% var rankingItem = rankingList[i]; %>
+                <div class="row-container row content-row">
+                    <div class="item-row col-xs-2 col-md-2 text-center">
+                        <%= rankingItem.ranking %>
+                    </div>
+                    <div class="item-row col-xs-1 col-md-1 text-center">
+                        <img class="grade-icon" src="/images/icon_rank_<%= rankingItem.grade_id %>.png" />
+                    </div>
+                    <div class="nickname-row item-row col-xs-4 col-md-4">
+                        <%= rankingItem.nickname %>
+                    </div>
+                    <div class="item-row col-xs-2 col-md-2 text-center">
+                        <img height="21" width="60" src="/images/button_bookmark_on.png" />
+                    </div>
+                    <div class="rating-row item-row col-xs-3 col-md-3 text-right">
+                        <%= rankingItem.hit_rating %>%
+                    </div>
+                </div>
+            <% } %>
         </div>
         <div id="menu_container">
             <%- include partial/menu.ejs %>

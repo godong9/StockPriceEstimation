@@ -21,8 +21,6 @@ let PredictionController = {
     });
   },
   setPrediction: function setPrediction(req, res) {
-    logger.debug("====== SESSION =====");
-    logger.debug(req.session);
     if (!Session.hasSession(req)) {
       return res.status(500).send(INTERNAL_SERVER_ERROR);
     }

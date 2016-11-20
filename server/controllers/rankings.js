@@ -9,7 +9,23 @@ const INTERNAL_SERVER_ERROR = '서버 에러 발생!';
 
 let RankingController = {
   getRankingPage: function getRankingPage(req, res) {
-    res.render('ranking', { activeTab: 'ranking' });
+    if (!Session.hasSession(req)) {
+      return res.status(500).send(INTERNAL_SERVER_ERROR);
+    }
+    const userId = Session.getSessionUserId(req);
+    Ranking.getRankings(function(err, result) {
+      if (err) {
+        logger.error(err);
+        return res.status(500).send(INTERNAL_SERVER_ERROR);
+      }
+      let finalResult = {
+        activeTab: 'ranking',
+        rankingList: result,
+        userRanking: _.findWhere(result, {user_id: userId})
+      };
+      logger.debug(finalResult);
+      res.render('ranking', finalResult);
+    });
   }
 };
 

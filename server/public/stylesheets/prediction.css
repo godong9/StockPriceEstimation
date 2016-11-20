@@ -45,7 +45,10 @@ body {
 }
 
 #center_container {
+    width: 100%;
     height: 60%;
+    margin: 0px;
+    padding: 0px;
 }
 
 #center_container > .center-item {
@@ -53,6 +56,15 @@ body {
     top: 50%;
     transform: translateY(-50%);
 }
+
+#center_container > .right-item {
+    padding-right: 0px;
+}
+
+#center_container > .left-item {
+    padding-left: 0px;
+}
+
 
 #center_container > .center-item > img {
     width: 100%;

@@ -1,0 +1,53 @@
+.row-title {
+    color: #FFFFFF;
+    width: 100%;
+    padding: 5px 10px;
+    margin: 3px 0px;
+    font-size: 15px;
+    height: 30px;
+    background-color: #3A3A3A;
+}
+
+.row-container {
+    width: 100%;
+    margin: 0;
+}
+
+.row-container > div {
+    height: 100%;
+    position: relative;
+    padding: 0px;
+    margin: 0px;
+}
+
+.content-row {
+    height: 50px;
+}
+
+
+.content-row > .item-row {
+    color: #FFFFFF;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+}
+
+.content-row > .item-row > img.grade-icon {
+    height: 80%;
+    overflow: auto;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.nickname-row {
+    padding-left: 30px !important;
+}
+
+.rating-row {
+    color: #FAA8A9 !important;
+    padding-right: 10px !important;
+}
