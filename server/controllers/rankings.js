@@ -10,7 +10,7 @@ const INTERNAL_SERVER_ERROR = '서버 에러 발생!';
 let RankingController = {
   getRankingPage: function getRankingPage(req, res) {
     if (!Session.hasSession(req)) {
-      return res.status(500).send(INTERNAL_SERVER_ERROR);
+      return res.redirect('/');
     }
     const userId = Session.getSessionUserId(req);
     Ranking.getRankings(function(err, result) {

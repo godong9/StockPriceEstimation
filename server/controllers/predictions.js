@@ -22,7 +22,7 @@ let PredictionController = {
   },
   setPrediction: function setPrediction(req, res) {
     if (!Session.hasSession(req)) {
-      return res.status(500).send(INTERNAL_SERVER_ERROR);
+      return res.redirect('/');
     }
     const userId = Session.getSessionUserId(req);
     let params = {
