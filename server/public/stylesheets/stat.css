@@ -60,10 +60,16 @@
     margin: 0 auto;
 }
 
-.back-and-button-nav > p {
+.back-and-button-nav p {
     padding: 5px 10px;
 }
 
 #content_container img {
     width: 100%;
 }
+
+.text-left {
+    z-index: 1000;
+    width: 50px !important;
+}
+
