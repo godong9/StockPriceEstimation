@@ -1,4 +1,4 @@
-//stat.js
+//ranking.js
 define([
   './libs/jquery/dist/jquery'
 ], function (

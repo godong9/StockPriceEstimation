@@ -19,6 +19,7 @@ define([
         callback(jqXHR.responseText || "Error");
       },
       success: function successHandler(data) {
+        alert(jqXHR.responseText);
         callback(null, data)
       }
     });
@@ -32,6 +33,7 @@ define([
       dataType: 'json',
       data: JSON.stringify(params),
       error: function errorHandler(jqXHR) {
+        alert(jqXHR.responseText);
         callback(jqXHR.responseText || "Error");
       },
       success: function successHandler(data) {
@@ -48,6 +50,7 @@ define([
       dataType: 'json',
       data: JSON.stringify(params),
       error: function errorHandler(jqXHR) {
+        alert(jqXHR.responseText);
         callback(jqXHR.responseText || "Error");
       },
       success: function successHandler(data) {
@@ -64,6 +67,7 @@ define([
       dataType: 'json',
       data: JSON.stringify(params),
       error: function errorHandler(jqXHR) {
+        alert(jqXHR.responseText);
         callback(jqXHR.responseText || "Error");
       },
       success: function successHandler(data) {
