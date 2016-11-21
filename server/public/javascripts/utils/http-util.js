@@ -16,10 +16,10 @@ define([
       type: 'GET',
       data: params,
       error: function errorHandler(jqXHR) {
+        alert(jqXHR.responseText);
         callback(jqXHR.responseText || "Error");
       },
       success: function successHandler(data) {
-        alert(jqXHR.responseText);
         callback(null, data)
       }
     });
