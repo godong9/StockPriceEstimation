@@ -14,6 +14,7 @@ let UserController = {
     };
     User.getUserByEmail(params.email, function(err, rows) {
       if (err || !rows || rows.length === 0) {
+        logger.error(err);
         return res.status(500).send(LOGIN_ERROR);
       }
       if (rows[0].password !== params.password) {

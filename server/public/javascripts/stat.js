@@ -3,7 +3,7 @@ define([
   './libs/jquery/dist/jquery',
   './libs/underscore/underscore',
   './libs/numeral/numeral',
-  './utils/http-util'
+  './utils/http-util',
 ], function (
   $,
   _,
@@ -34,8 +34,7 @@ define([
           stat.price_text = numeral(stat.today_price).format('0,0') + '원';
           return stat;
         });
-        console.log(data);
-
+        // console.log(data);
         self.draw(data);
       });
     });
@@ -122,10 +121,6 @@ define([
             ]
           }
         }]
-    });
-
-    d3.select("svg").on("click", function() {
-      location.href = '/stats/detail';
     });
   };
 
