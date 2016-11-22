@@ -4,6 +4,7 @@ body {
 
 #content_container {
     padding-top: 65%;
+    height: 100%;
 }
 
 #lost_password {
