@@ -76,7 +76,7 @@ define([
     var pack = d3.pack()
       .size([width, width])
       .padding(1.5);
-    
+
     var root = d3.hierarchy({children: data})
       .sum(function(d) { return d.value; })
       .each(function(d) {
