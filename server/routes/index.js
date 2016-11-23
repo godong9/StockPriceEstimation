@@ -7,9 +7,5 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-/* GET test data */
-router.get('/test', function(req, res, next) {
-  res.send('test.csv');
-});
 
 module.exports = router;
