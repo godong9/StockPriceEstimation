@@ -3,11 +3,13 @@ define([
   './libs/jquery/dist/jquery',
   './libs/underscore/underscore',
   './libs/numeral/numeral',
-  './utils/http-util',
+  './libs/d3/d3',
+  './utils/http-util'
 ], function (
   $,
   _,
   numeral,
+  d3,
   HttpUtil
 ) {
   'use strict';
@@ -57,89 +59,69 @@ define([
   };
 
   StatPage.prototype.draw = function(data) {
-    d3.select("svg").remove();
-    var bubbleChart = new d3.svg.BubbleChart({
-      supportResponsive: true,
-      //container: => use @default
-      size: 600,
-      //viewBoxSize: => use @default
-      innerRadius: 600 / 3.5,
-      //outerRadius: => use @default
-      radiusMin: 50,
-      //radiusMax: use @default
-      //intersectDelta: use @default
-      //intersectInc: use @default
-      //circleColor: use @default
-      data: {
-        items: data,
-        eval: function (item) {return item.count;},
-        classed: function (item) {return item.text.split(" ").join("");}
-      },
-      plugins: [
-        {
-          name: "lines",
-          options: {
-            format: [
-              {// Line #0
-                textField: "text",
-                classed: {count: true},
-                style: {
-                  "font-size": "18px",
-                  "text-anchor": "middle",
-                  fill: "white"
-                },
-                attr: {
-                  dy: "-10px",
-                  x: function (d) {return d.cx;},
-                  y: function (d) {return d.cy;}
-                }
-              },
-              {// Line #1
-                textField: "price_text",
-                classed: {text: true},
-                style: {
-                  "font-size": "14px",
-                  "text-anchor": "middle",
-                  fill: "white"
-                },
-                attr: {
-                  dy: "10px",
-                  x: function (d) {return d.cx;},
-                  y: function (d) {return d.cy;}
-                }
-              },
-              {
-                textField: "stat_count_text",
-                classed: {text: true},
-                style: {
-                  "font-size": "12px",
-                  "text-anchor": "middle",
-                  fill: "white"
-                },
-                attr: {
-                  dy: "30px",
-                  x: function (d) {return d.cx;},
-                  y: function (d) {return d.cy;}
-                }
-              }
-            ],
-            centralFormat: [
-              {// Line #0
-                style: {"font-size": "50px"},
-                attr: {dy: "-30px"}
-              },
-              {// Line #1
-                style: {"font-size": "40px"},
-                attr: {dy: "30px"}
-              },
-              {
-                style: {"font-size": "25px"},
-                attr: {dy: "90px"}
-              }
-            ]
-          }
-        }]
+    $('svg').css({
+      'width': $('#stat_canvas').width() + 'px',
+      'height': $('#stat_canvas').height() + 'px'
     });
+
+    var svg = d3.select("svg"),
+      width = +$("svg").width();
+
+    var format = d3.format(",d");
+
+    var color = d3.scaleOrdinal(d3.schemeCategory20c);
+
+    var pack = d3.pack()
+      .size([width, width])
+      .padding(1.5);
+
+    d3.csv("/test.csv", function(d) {
+      d.value = +d.value;
+      if (d.value) return d;
+    }, function(error, classes) {
+      if (error) throw error;
+
+      var root = d3.hierarchy({children: classes})
+        .sum(function(d) { return d.value; })
+        .each(function(d) {
+          if (id = d.data.id) {
+            var id, i = id.lastIndexOf(".");
+            d.id = id;
+            d.package = id.slice(0, i);
+            d.class = id.slice(i + 1);
+          }
+        });
+
+      var node = svg.selectAll(".node")
+        .data(pack(root).leaves())
+        .enter().append("g")
+        .attr("class", "node")
+        .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+      node.append("circle")
+        .attr("id", function(d) { return d.id; })
+        .attr("r", function(d) { return d.r; })
+        .style("fill", function(d) { return color(d.package); });
+
+      node.append("clipPath")
+        .attr("id", function(d) { return "clip-" + d.id; })
+        .append("use")
+        .attr("xlink:href", function(d) { return "#" + d.id; });
+
+      node.append("text")
+        .attr("clip-path", function(d) { return "url(#clip-" + d.id + ")"; })
+        .selectAll("tspan")
+        .data(function(d) { return d.class.split(/(?=[A-Z][^A-Z])/g); })
+        .enter().append("tspan")
+        .attr("x", 0)
+        .attr("y", function(d, i, nodes) { return 13 + (i - nodes.length / 2 - 0.5) * 10; })
+        .text(function(d) { return d; });
+
+      node.append("title")
+        .text(function(d) { return d.id + "\n" + format(d.value); });
+    });
+
+
   };
 
   return new StatPage();
