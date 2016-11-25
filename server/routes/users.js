@@ -6,6 +6,8 @@ router.post('/login', UserController.login);
 
 router.get('/myPage', UserController.myPage);
 
+router.get('/send/email', UserController.sendConfirmEmail);
+
 /* GET users listing. */
 router.get('/', UserController.getUsers);
 

@@ -4,7 +4,8 @@ const logger = log4js.getLogger('controllers/users');
 const User = require('../models/users');
 const LOGIN_ERROR = '로그인 실패!';
 
-var Session = require('../services/session');
+const Session = require('../services/session');
+const Mailer = require('../services/mailer');
 
 let UserController = {
   login: function login(req, res) {
@@ -27,6 +28,12 @@ let UserController = {
   },
   myPage: function myPage(req, res) {
     res.render('my-page', { activeTab: 'myPage' });
+  },
+  sendConfirmEmail: function sendConfirmEmail(req, res) {
+    Mailer.sendMail('godong9@gmail.com', '비밀번호 분실 관련', '비밀번호 초기화', function(err, info) {
+      logger.debug(info);
+      res.send({});
+    });
   },
   getUsers: function getUser(req, res, next) {
     let params = {};
