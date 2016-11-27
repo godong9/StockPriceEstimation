@@ -1,6 +1,17 @@
 const pool = require('../db/db').pool;
 
 let User = {
+  insertUser: function insertUser(params, cb) {
+    let query = 'INSERT INTO user (email, password, nickname) VALUES (?,?,?);';
+    let insertItem = [
+      params.email,
+      params.password,
+      params.nickname
+    ];
+    pool.query(query, insertItem, function(err) {
+      cb(err);
+    });
+  },
   getUserByEmail: function getUserByEmail(email, cb) {
     let query = 'SELECT * FROM user WHERE email=?';
     let queryItem = email;
