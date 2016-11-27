@@ -1,5 +1,6 @@
+'use strict';
+
 const async = require('async');
-const log4js = require('log4js');
 const pool = require('../db/db').pool;
 
 let Stock = {

@@ -1,5 +1,7 @@
 'use strict';
 
+const log4js = require('log4js');
+const logger = log4js.getLogger('services/koscom');
 const config = require('../config/index');
 const mailer = require('nodemailer');
 
@@ -25,6 +27,7 @@ let MailerService = {
     // send mail with defined transport object
     transporter.sendMail(mailOptions, function(err, info){
       if (cb) {
+        logger.debug(info);
         return cb(err, info);
       }
     });

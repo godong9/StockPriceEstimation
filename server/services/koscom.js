@@ -1,8 +1,7 @@
 'use strict';
 
 const log4js = require('log4js');
-const logger = log4js.getLogger('controllers/users');
-const _ = require('underscore');
+const logger = log4js.getLogger('services/koscom');
 const request = require('request');
 
 const KOSCOM_STOCK_LIST_URI = 'https://sandbox-apigw.koscom.co.kr/v2/market/stocks/{marketcode}/lists';
