@@ -1,8 +1,12 @@
-const nodemailer = require('nodemailer');
+'use strict';
+
+const log4js = require('log4js');
+const logger = log4js.getLogger('services/koscom');
 const config = require('../config/index');
+const mailer = require('nodemailer');
 
 // create reusable transporter object using SMTP transport
-const transporter = nodemailer.createTransport({
+const transporter = mailer.createTransport({
   service: 'Gmail',
   auth: {
     user: config.email.user,
@@ -23,6 +27,7 @@ let MailerService = {
     // send mail with defined transport object
     transporter.sendMail(mailOptions, function(err, info){
       if (cb) {
+        logger.debug(info);
         return cb(err, info);
       }
     });

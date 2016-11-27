@@ -34,9 +34,10 @@ define([
       $(this).css('height', '120%').css('margin-top', '0%');
       var params = {
         willUp: 1,
+        stockId: self.stock.id,
         todayPrice: self.stock.price
       };
-      HttpUtil.postData('/predictions/' + self.stock.id, params, function(err, data) {
+      HttpUtil.postData('/predictions/vote', params, function(err, data) {
         if (err) {
           return alert(err);
         }
@@ -52,9 +53,10 @@ define([
       $(this).css('height', '120%');
       var params = {
         willUp: 0,
+        stockId: self.stock.id,
         todayPrice: self.stock.price
       };
-      HttpUtil.postData('/predictions/' + self.stock.id, params, function(err, data) {
+      HttpUtil.postData('/predictions/vote', params, function(err, data) {
         if (err) {
           return alert(err);
         }

@@ -1,4 +1,5 @@
-const log4js = require('log4js');
+'use strict';
+
 const pool = require('../db/db').pool;
 
 let Prediction = {

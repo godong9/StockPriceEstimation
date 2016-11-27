@@ -1,9 +1,10 @@
+'use strict';
+
 const log4js = require('log4js');
 const logger = log4js.getLogger('controllers/predictions');
-const Prediction = require('../models/predictions');
-const _ = require('underscore');
+const Prediction = require('../models/prediction');
 
-var Session = require('../services/session');
+const Session = require('../services/session');
 
 const INTERNAL_SERVER_ERROR = '서버 에러 발생!';
 

@@ -1,11 +1,13 @@
-const _ = require('underscore');
+'use strict';
+
 const log4js = require('log4js');
 const logger = log4js.getLogger('controllers/users');
-const User = require('../models/users');
-const LOGIN_ERROR = '로그인 실패!';
+const User = require('../models/user');
 
 const Session = require('../services/session');
 const Mailer = require('../services/mailer');
+
+const LOGIN_ERROR = '로그인 실패!';
 
 let UserController = {
   login: function login(req, res) {

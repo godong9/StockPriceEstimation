@@ -1,13 +1,22 @@
 body {
   width: 100%;
+  max-width: 800px;
   height: 100vh;
-  margin: 0px;
+  margin: 0 auto;
   padding: 0px;
-  background-image: url('/images/default_bg.png');
+  background-image: url('../images/default_bg.png');
   background-size: cover;
   font-family: "NotoSansCJKkr_Regular";
 }
 
+@font-face {
+  font-family:"NotoSansCJKkr-Regular";
+  src: url('/font/NotoSansCJKkr_Regular.otf')format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+/* nav - start */
 #nav {
   background-color: #606060;
 }
@@ -24,25 +33,20 @@ body {
   margin: 0px;
   position: absolute;
 }
+/* nav - end */
 
 #content_container {
   width: 100%;
   height: 88%;
   padding-top: 50px;
-  overflow: scroll;
+  overflow: hidden;
 }
 
+/* menu_container - start */
 #menu_container {
   width: 100%;
   height: 12%;
   overflow: hidden;
-}
-
-@font-face {
-  font-family:"NotoSansCJKkr-Regular";
-  src: url('/font/NotoSansCJKkr_Regular.otf')format("truetype");
-  font-style: normal;
-  font-weight: normal;
 }
 
 #menu_select_option_list {
@@ -73,3 +77,4 @@ body {
   bottom: 0;
   right: 0;
 }
+/* menu_container - end */
