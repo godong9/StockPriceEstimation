@@ -1,7 +1,10 @@
+'use strict';
+
 const express = require('express');
 const router = express.Router();
 const PredictionController = require('../controllers/predictions');
 
+/* GET Prediction page. */
 router.get('/', PredictionController.getPredictionPage);
 
 

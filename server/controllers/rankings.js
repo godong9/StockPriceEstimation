@@ -1,6 +1,8 @@
+'use strict';
+
 const log4js = require('log4js');
 const logger = log4js.getLogger('controllers/rankings');
-const Ranking = require('../models/rankings');
+const Ranking = require('../models/ranking');
 const _ = require('underscore');
 
 var Session = require('../services/session');
