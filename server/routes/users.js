@@ -4,7 +4,9 @@ const express = require('express');
 const router = express.Router();
 const UserController = require('../controllers/users');
 
-/* GET Join page. */
+/**
+ * GET Join page.
+ */
 router.get('/join', function(req, res, next) {
   res.render('join');
 });
