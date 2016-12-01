@@ -85,4 +85,8 @@ text {
 #stat_canvas text {
     font-size: 24px;
 }
+
+#stat_canvas .stat-count-text {
+    font-size: 16px;
+}
 /* end - stat_canvas */

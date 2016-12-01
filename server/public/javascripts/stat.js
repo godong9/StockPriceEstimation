@@ -110,15 +110,32 @@ define([
     node.append("text")
       .attr("clip-path", function(d) { return "url(#clip-" + d.id + ")"; })
       .selectAll("tspan")
-      .data(function(d) { return d.class.split(/(?=[A-Z][^A-Z])/g); })
+      .data(function(d) { return [ d.class ]; })
       .enter().append("tspan")
       .attr("x", 0)
-      .attr("y", function(d, i, nodes) { return 13 + (i - nodes.length / 2 - 0.5) * 10; })
+      .attr("y", function(d, i, nodes) { return (i - nodes.length / 2 - 0.5) * 10; })
+      .text(function(d) { return d; });
+
+    node.append("text")
+      .attr("clip-path", function(d) { return "url(#clip-" + d.id + ")"; })
+      .attr("class", "price-text")
+      .selectAll("tspan")
+      .data(function(d) { return [ d.data.price_text ]; })
+      .enter().append("tspan")
+      .attr("y", function(d, i, nodes) { return 30 + (i - nodes.length / 2 - 0.5) * 10; })
+      .text(function(d) { return d; });
+
+    node.append("text")
+      .attr("clip-path", function(d) { return "url(#clip-" + d.id + ")"; })
+      .attr("class", "stat-count-text")
+      .selectAll("tspan")
+      .data(function(d) { return [ d.data.stat_count_text ]; })
+      .enter().append("tspan")
+      .attr("y", function(d, i, nodes) { return 55 + (i - nodes.length / 2 - 0.5) * 10; })
       .text(function(d) { return d; });
 
     node.append("title")
       .text(function(d) { return d.id + "\n" + format(d.value); });
-
 
   };
 
