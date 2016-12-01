@@ -1,0 +1,21 @@
+body {
+
+}
+
+#content_container {
+    padding-top: 65%;
+    height: 100%;
+}
+
+.join-input {
+    margin: 20px 0px;
+}
+
+.join-input > input {
+    width: 60%;
+}
+
+#register_btn > img {
+    width: 35%;
+    padding: 10px 0px;
+}

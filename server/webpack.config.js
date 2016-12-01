@@ -5,6 +5,7 @@ module.exports = {
   context: __dirname + '/public/javascripts',
   entry: {
     'main': './main.js',
+    'join': './join.js',
     'prediction': './prediction.js',
     'stat': './stat.js',
     'ranking': './ranking.js'
