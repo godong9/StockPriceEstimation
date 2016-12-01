@@ -61,6 +61,9 @@ define([
   };
 
   StatPage.prototype.draw = function(data) {
+    d3.select('svg').remove();
+    d3.select('#stat_canvas').append("svg");
+
     $('svg').css({
       'width': $('#stat_canvas').width() + 'px',
       'height': $('#stat_canvas').height() + 'px'
