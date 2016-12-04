@@ -5,7 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var passport = require('passport');
+var MySQLStore = require('express-mysql-session')(session);
 
+var auth = require('./middlewares/auth');
 var config = require('./config/index');
 
 var index = require('./routes/index');
@@ -16,6 +19,14 @@ var stats = require('./routes/stats');
 var rankings = require('./routes/rankings');
 
 var app = express();
+
+var sessionStore = new MySQLStore({
+  host: config.db.host,
+  port: config.db.port,
+  user: config.db.user,
+  password: config.db.password,
+  database: config.db.database
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -34,10 +45,11 @@ app.use('/doc', express.static(path.join(__dirname, 'doc')));
 // Session
 if (config.isProduction()) {
   app.use(session({
+    key: config.cookie_key,
     secret: config.secret,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }
+    store: sessionStore,
+    resave: true,
+    saveUninitialized: true
   }));
 } else {
   app.use(session({
@@ -47,6 +59,9 @@ if (config.isProduction()) {
     cookie: {}
   }));
 }
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', index);
 app.use('/users', users);

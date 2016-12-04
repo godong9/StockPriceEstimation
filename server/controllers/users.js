@@ -4,7 +4,7 @@ const async = require('async');
 const log4js = require('log4js');
 const logger = log4js.getLogger('controllers/users');
 const bcrypt = require('bcrypt');
-const User = require('../models/user');
+const User = require('../models/users');
 
 const Session = require('../services/session');
 const Mailer = require('../services/mailer');
@@ -14,6 +14,33 @@ const REGISTER_ERROR = '회원가입 실패!';
 const LOGIN_ERROR = '로그인 실패!';
 
 let UserController = {
+  facebookLoginCallback: function facebookLoginCallback(req, res) {
+    let fbUser = req.user._json;
+    let params = {
+      fbId: fbUser.id,
+      nickname: fbUser.name,
+      email: fbUser.email,
+      profileImg: fbUser.picture && fbUser.picture.data && fbUser.picture.data.url
+    };
+
+    async.waterfall([
+      function(callback) {
+        User.getUserByFacebookId(params.fbId, callback);
+      },
+      function(user, callback) {
+        if (user) {
+          return callback();
+        }
+        User.insertFacebookUser(params, callback);
+      }
+    ], function (err) {
+      if (err) {
+        logger.error(err);
+        return res.redirect('/page/error');
+      }
+      res.redirect('/');
+    });
+  },
   register: function register(req, res) {
     let params = {
       email: req.body.email,

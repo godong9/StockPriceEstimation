@@ -2,7 +2,7 @@
 
 const log4js = require('log4js');
 const logger = log4js.getLogger('controllers/predictions');
-const Prediction = require('../models/prediction');
+const Prediction = require('../models/predictions');
 
 const Session = require('../services/session');
 
