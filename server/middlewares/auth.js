@@ -1,6 +1,9 @@
-var passport = require('passport');
-var Strategy = require('passport-facebook').Strategy;
-var config = require('../config/index');
+'use strict';
+
+const passport = require('passport');
+const Strategy = require('passport-facebook').Strategy;
+const config = require('../config/index');
+const User = require('../models/users');
 
 passport.use(
   new Strategy(
@@ -11,8 +14,11 @@ passport.use(
   )
 );
 
-passport.serializeUser(function(user, cb) {
-  cb(null, user);
+passport.serializeUser(function(fbUser, cb) {
+  User.getUserByFacebookId(fbUser.id, function(err, user) {
+    fbUser.userId = user && user.id;
+    cb(null, fbUser);
+  });
 });
 
 passport.deserializeUser(function(obj, cb) {

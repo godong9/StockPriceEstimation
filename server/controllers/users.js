@@ -1,8 +1,7 @@
 'use strict';
 
 const async = require('async');
-const log4js = require('log4js');
-const logger = log4js.getLogger('controllers/users');
+const logger = require('log4js').getLogger('controllers/users');
 const bcrypt = require('bcrypt');
 const User = require('../models/users');
 
@@ -40,6 +39,10 @@ let UserController = {
       }
       res.redirect('/');
     });
+  },
+  logout: function logout(req, res) {
+    req.logout();
+    res.redirect('/');
   },
   register: function register(req, res) {
     let params = {

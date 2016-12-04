@@ -14,7 +14,7 @@ router.get('/login/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login/error' }),
   UserController.facebookLoginCallback);
 
-
+router.get('/logout', UserController.logout);
 
 
 /**

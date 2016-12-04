@@ -4,23 +4,13 @@ const _ = require('underscore');
 
 let SessionService = {
   hasSession: function hasSession(req) {
-    return (!_.isUndefined(req.session) && !_.isUndefined(req.session.userId))
+    return (!_.isUndefined(req.user) && !_.isUndefined(req.user.id))
   },
   getSession: function getSession(req) {
-    return {
-      userId: req.session.userId,
-      userNickname: req.session.userNickname
-    }
+    return req.user;
   },
   getSessionUserId: function getSessionUserId(req) {
-    return req.session.userId;
-  },
-  setSession: function setSession(req, user) {
-    req.session.userId = user.id;
-    req.session.userNickname = user.nickname;
-  },
-  removeSession: function removeSession(req) {
-    req.session.destroy();
+    return req.user.userId;
   }
 };
 

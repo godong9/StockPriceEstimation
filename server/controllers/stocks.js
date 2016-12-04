@@ -2,8 +2,7 @@
 
 const _ = require('underscore');
 const async = require('async');
-const log4js = require('log4js');
-const logger = log4js.getLogger('controllers/stocks');
+const logger = require('log4js').getLogger('controllers/stocks');
 const Stock = require('../models/stocks');
 const numeral = require('numeral');
 const KoscomService = require('../services/koscom');
